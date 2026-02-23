@@ -22,7 +22,7 @@ class AuditLogModel extends Model
     protected $dateFormat     = 'datetime';
     protected $createdField   = 'created_at';
 
-    protected $casts = [
+    protected array $casts = [
         'meta' => 'json-array',
     ];
 

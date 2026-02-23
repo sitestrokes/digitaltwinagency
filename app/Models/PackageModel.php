@@ -23,7 +23,7 @@ class PackageModel extends Model
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
 
-    protected $casts = [
+    protected array $casts = [
         'selected_services' => 'json-array',
         'starter_services'  => 'json-array',
         'growth_services'   => 'json-array',

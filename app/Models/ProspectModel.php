@@ -23,7 +23,7 @@ class ProspectModel extends Model
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
 
-    protected $casts = [
+    protected array $casts = [
         'pain_points' => 'json-array',
     ];
 
