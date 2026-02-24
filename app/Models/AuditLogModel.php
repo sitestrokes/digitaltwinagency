@@ -23,7 +23,7 @@ class AuditLogModel extends Model
     protected $createdField   = 'created_at';
 
     protected array $casts = [
-        'meta' => 'json-array',
+        'meta' => '?json-array',
     ];
 
     public function log(
