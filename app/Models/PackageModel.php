@@ -24,10 +24,10 @@ class PackageModel extends Model
     protected $updatedField  = 'updated_at';
 
     protected array $casts = [
-        'selected_services' => 'json-array',
-        'starter_services'  => 'json-array',
-        'growth_services'   => 'json-array',
-        'premium_services'  => 'json-array',
+        'selected_services' => '?json-array',
+        'starter_services'  => '?json-array',
+        'growth_services'   => '?json-array',
+        'premium_services'  => '?json-array',
     ];
 
     public function getByUser(int $userId, int $limit = 20): array

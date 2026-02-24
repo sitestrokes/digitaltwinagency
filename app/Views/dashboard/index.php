@@ -99,6 +99,10 @@
           <input type="text" class="form-input" id="bizName" placeholder="e.g. Mario's Italian Kitchen">
         </div>
         <div class="form-group">
+          <label class="form-label">Website URL <span style="font-weight:500;opacity:0.55;font-size:11px">(optional)</span></label>
+          <input type="url" class="form-input" id="bizUrl" placeholder="e.g. https://marios.com">
+        </div>
+        <div class="form-group">
           <label class="form-label">Business Niche</label>
           <select class="form-select" id="bizNiche">
             <option value="">Select niche...</option>

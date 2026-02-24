@@ -26,6 +26,11 @@ class CreateProspectsTable extends Migration
                 'constraint' => 255,
                 'null'       => false,
             ],
+            'website_url' => [
+                'type'       => 'VARCHAR',
+                'constraint' => 512,
+                'null'       => true,
+            ],
             'niche' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 100,

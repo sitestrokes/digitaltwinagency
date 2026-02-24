@@ -13,7 +13,7 @@ class ProspectModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        'user_id', 'name', 'niche', 'website_status', 'video_status',
+        'user_id', 'name', 'website_url', 'niche', 'website_status', 'video_status',
         'social_status', 'budget', 'competitors', 'score',
         'readiness_level', 'pain_points', 'notes'
     ];
@@ -24,7 +24,7 @@ class ProspectModel extends Model
     protected $updatedField  = 'updated_at';
 
     protected array $casts = [
-        'pain_points' => 'json-array',
+        'pain_points' => '?json-array',
     ];
 
     public function getByUser(int $userId, int $limit = 20, int $offset = 0): array

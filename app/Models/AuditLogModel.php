@@ -17,10 +17,10 @@ class AuditLogModel extends Model
         'meta', 'ip_address', 'user_agent'
     ];
 
-    protected $useTimestamps  = true;
-    protected $updatesTimestamp = false;
-    protected $dateFormat     = 'datetime';
-    protected $createdField   = 'created_at';
+    protected $useTimestamps = true;
+    protected $dateFormat    = 'datetime';
+    protected $createdField  = 'created_at';
+    protected $updatedField  = '';
 
     protected array $casts = [
         'meta' => '?json-array',
@@ -39,7 +39,7 @@ class AuditLogModel extends Model
             'action'      => $action,
             'entity_type' => $entityType,
             'entity_id'   => $entityId,
-            'meta'        => $meta ? json_encode($meta) : null,
+            'meta'        => $meta,
             'ip_address'  => $request->getIPAddress(),
             'user_agent'  => substr((string)$request->getUserAgent(), 0, 500),
         ]);

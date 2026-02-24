@@ -62,6 +62,7 @@ function analyzeProspect() {
   const niche = document.getElementById('bizNiche').value;
   if (!name || !niche) { showToast('Please fill in Business Name and Niche.', 'error'); return; }
 
+  const url         = document.getElementById('bizUrl').value.trim();
   const website     = document.getElementById('bizWebsite').value;
   const video       = document.getElementById('bizVideo').value;
   const social      = document.getElementById('bizSocial').value;
@@ -112,7 +113,7 @@ function analyzeProspect() {
     </div>
   `).join('');
 
-  window._prospectData = { name, niche, score, color, label, points };
+  window._prospectData = { name, url, niche, score, color, label, points };
   markPipelineDone('tab1');
 
   // Show save button
@@ -137,7 +138,8 @@ function showOnePager() {
       </div>
     </div>
     <h2 style="font-family:var(--font-display);font-size:26px">${d.name}</h2>
-    <p style="color:#888;font-size:14px;margin-bottom:16px">${d.niche} &bull; ${new Date().toLocaleDateString()}</p>
+    <p style="color:#888;font-size:14px;margin-bottom:${d.url ? '6px' : '16px'}">${d.niche} &bull; ${new Date().toLocaleDateString()}</p>
+    ${d.url ? `<p style="font-size:13px;margin-bottom:16px"><a href="${d.url}" target="_blank" style="color:#1b2d4f;font-weight:700;word-break:break-all">${d.url}</a></p>` : ''}
     <div class="op-score-box">
       <div class="op-score-num" style="color:${d.color}">${d.score}</div>
       <div>
@@ -484,6 +486,7 @@ async function saveProspect() {
   try {
     await apiPost('api/prospects/save', {
       name:            d.name,
+      website_url:     d.url || null,
       niche:           d.niche,
       website_status:  document.getElementById('bizWebsite')?.value,
       video_status:    document.getElementById('bizVideo')?.value,

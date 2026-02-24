@@ -25,7 +25,7 @@ class ProposalModel extends Model
     protected $updatedField  = 'updated_at';
 
     protected array $casts = [
-        'services' => 'json-array',
+        'services' => '?json-array',
     ];
 
     public function getByUser(int $userId, int $limit = 20, int $offset = 0): array
