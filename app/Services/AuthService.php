@@ -6,6 +6,9 @@ use App\Models\UserModel;
 
 class AuthService
 {
+    /** Shared password for self-registered users, sent via access email */
+    public const DEFAULT_PASSWORD = 'twin26bonus';
+
     protected UserModel $userModel;
 
     public function __construct()
@@ -71,7 +74,7 @@ class AuthService
 
         $userId = $this->userModel->insert([
             'email'         => $data['email'],
-            'password_hash' => password_hash($data['password'], PASSWORD_BCRYPT),
+            'password_hash' => password_hash(self::DEFAULT_PASSWORD, PASSWORD_BCRYPT),
             'name'          => $data['name'],
             'role'          => 'user',
             'status'        => 'active',
@@ -90,6 +93,8 @@ class AuthService
 
         $user = $this->userModel->find($userId);
 
+        $this->sendAccessEmail($user);
+
         session()->set([
             'user_id'   => $user['id'],
             'user_name' => $user['name'],
@@ -98,6 +103,27 @@ class AuthService
         ]);
 
         return ['success' => true, 'user' => $user];
+    }
+
+    protected function sendAccessEmail(array $user): void
+    {
+        $html = view('emails/access_email', [
+            'email'    => $user['email'],
+            'password' => self::DEFAULT_PASSWORD,
+            'loginUrl' => base_url('login'),
+        ]);
+
+        try {
+            (new MailgunService())->send(
+                $user['email'],
+                $user['name'],
+                'TwinProfit HQ - Product Access Login Information',
+                $html
+            );
+        } catch (\Throwable $e) {
+            // email failure must not block registration
+            log_message('error', 'Access email failed for ' . $user['email'] . ': ' . $e->getMessage());
+        }
     }
 
     public function logout(): void

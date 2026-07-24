@@ -66,24 +66,17 @@ class Auth extends BaseController
     public function attemptRegister(): \CodeIgniter\HTTP\RedirectResponse
     {
         $rules = [
-            'name'             => 'required|min_length[2]|max_length[100]',
-            'email'            => 'required|valid_email',
-            'password'         => 'required|min_length[8]',
-            'password_confirm' => 'required|matches[password]',
+            'name'  => 'required|min_length[2]|max_length[100]',
+            'email' => 'required|valid_email',
         ];
 
-        $messages = [
-            'password_confirm' => ['matches' => 'Passwords do not match.'],
-        ];
-
-        if (!$this->validate($rules, $messages)) {
+        if (!$this->validate($rules)) {
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
 
         $result = $this->authService->register([
-            'name'     => $this->request->getPost('name'),
-            'email'    => $this->request->getPost('email'),
-            'password' => $this->request->getPost('password'),
+            'name'  => $this->request->getPost('name'),
+            'email' => $this->request->getPost('email'),
         ]);
 
         if (!$result['success']) {
@@ -92,7 +85,7 @@ class Auth extends BaseController
 
         $this->auditLog->log($result['user']['id'], 'auth.register');
 
-        return redirect()->to('/dashboard')->with('success', 'Welcome to TwinProfit HQ, ' . $result['user']['name'] . '!');
+        return redirect()->to('/dashboard')->with('success', 'Welcome to TwinProfit HQ, ' . $result['user']['name'] . '! Your login details have been sent to your email.');
     }
 
     public function logout(): \CodeIgniter\HTTP\RedirectResponse

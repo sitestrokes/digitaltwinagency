@@ -21,7 +21,6 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#1b2d4f;min-height:10
 .form-input{width:100%;padding:13px 16px;background:#f0f3f8;border:2px solid transparent;border-radius:14px;color:#1a1a2e;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;outline:none;transition:all 0.2s}
 .form-input:focus{background:#fff;border-color:#d4a01e;box-shadow:0 0 0 4px rgba(212,160,30,0.15)}
 .form-input::placeholder{color:#8a95a8;font-weight:500}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .btn-auth{width:100%;padding:15px;background:#d4a01e;border:none;border-radius:100px;color:#1a1a2e;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:800;cursor:pointer;transition:all 0.3s;margin-top:8px;box-shadow:0 4px 16px rgba(212,160,30,0.3)}
 .btn-auth:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(212,160,30,0.4);background:#e0ad28}
 .auth-footer{text-align:center;margin-top:18px;font-size:14px;color:#6b7a94;font-weight:500}
@@ -35,6 +34,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#1b2d4f;min-height:10
 .value-props{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:24px}
 .value-prop{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:#3d3d5c}
 .value-prop-icon{width:20px;height:20px;background:#d4a01e;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.pw-note{padding:11px 14px;background:#fdf6e3;border-radius:12px;border-left:4px solid #d4a01e;font-size:13px;font-weight:600;color:#6b5a1e;margin-bottom:4px}
 </style>
 </head>
 <body>
@@ -80,16 +80,7 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#1b2d4f;min-height:10
       <label class="form-label">Email Address</label>
       <input type="email" name="email" class="form-input" placeholder="you@agency.com" value="<?= esc(old('email')) ?>" required>
     </div>
-    <div class="grid-2">
-      <div class="form-group">
-        <label class="form-label">Password</label>
-        <input type="password" name="password" class="form-input" placeholder="Min 8 chars" required>
-      </div>
-      <div class="form-group">
-        <label class="form-label">Confirm Password</label>
-        <input type="password" name="password_confirm" class="form-input" placeholder="Repeat password" required>
-      </div>
-    </div>
+    <div class="pw-note">🔑 Your login password will be sent to your email.</div>
     <button type="submit" class="btn-auth">Create Account →</button>
   </form>
 
