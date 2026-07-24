@@ -85,7 +85,7 @@ class Auth extends BaseController
 
         $this->auditLog->log($result['user']['id'], 'auth.register');
 
-        return redirect()->to('/dashboard')->with('success', 'Welcome to TwinProfit HQ, ' . $result['user']['name'] . '! Your login details have been sent to your email.');
+        return redirect()->to('/login')->with('success', 'Account created! Your login details have been sent to your email.');
     }
 
     public function logout(): \CodeIgniter\HTTP\RedirectResponse

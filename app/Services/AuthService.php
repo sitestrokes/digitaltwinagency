@@ -95,13 +95,6 @@ class AuthService
 
         $this->sendAccessEmail($user);
 
-        session()->set([
-            'user_id'   => $user['id'],
-            'user_name' => $user['name'],
-            'user_email'=> $user['email'],
-            'user_role' => $user['role'],
-        ]);
-
         return ['success' => true, 'user' => $user];
     }
 
